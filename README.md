@@ -30,10 +30,14 @@ Telegram API (для отправки уведомлений)
 3. Создайте файл .env в корневой директории и заполните необходимые переменные окружения:
 
 * SECRET_KEY = Ключ для запуска проекта
+* TELEGRAM_TOKEN = Токен для работы с API Telegram
 * DATABASE_NAME = Наименование базы данных
 * DATABASE_USER = Пользователь базы данных
 * DATABASE_PASSWORD = Пароль от базы данных
-* TELEGRAM_TOKEN = Токен для работы с API Telegram 
+* POSTGRES_HOST= IP базы данных 
+* POSTGRES_PORT= Порт базы данных 
+* CELERY_BROKER_URL=redis://localhost:6379
+* CELERY_RESULT_BACKEND=redis://localhost:6379
 
 4. Примените миграции: python manage.py migrate
 
@@ -46,7 +50,7 @@ Telegram API (для отправки уведомлений)
 * celery -A config worker --pool=solo -l INFO
 * celery -A config beat -l info -S django
 
-7. Подготовьте телеграм бота для отправки данных (можно использовать данные по умолчанию @habit_1328_bot)
+7. Подготовьте телеграм бота для отправки данных (можно использовать данные по умолчанию @habit_123_bot)
 
 * Запустите бота командой /start
 

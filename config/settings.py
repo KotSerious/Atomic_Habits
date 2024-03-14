@@ -93,7 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DATABASE_NAME'),
-        'HOST': '127.0.0.1',
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT'),
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD')
     }
@@ -180,8 +181,8 @@ TELEGRAM_URL = 'https://api.telegram.org/bot'
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 # Настройки для Celery
-CELERY_BROKER_URL = 'redis://localhost:6379'    # URL-адрес брокера сообщений
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'    # URL-адрес брокера результатов, также Redis
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')    # URL-адрес брокера сообщений
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')    # URL-адрес брокера результатов, также Redis
 CELERY_TIMEZONE = "UTC"    # Часовой пояс для работы Celery
 CELERY_TASK_TRACK_STARTED = True    # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60    # Максимальное время на выполнение задачи
