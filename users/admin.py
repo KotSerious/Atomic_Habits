@@ -7,5 +7,5 @@ class UserAdmin(admin.ModelAdmin):
     """
     Админка для пользователей
     """
-    list_display = ('first_name', 'last_name', 'email', 'is_active',)
+    list_display = ('email', 'first_name', 'last_name', 'is_active',)
     list_filter = ('is_active',)

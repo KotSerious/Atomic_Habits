@@ -7,7 +7,14 @@ class UserCreateAPIView(CreateAPIView):
     """
     Контроллер для создания сущности моедли Пользователя
     """
+    queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        password = serializer.validated_data.pop('password')
+        self.object = serializer.save()
+        self.object.set_password(password)
+        self.object.save()
 
 
 class UserRetrieveAPIView(RetrieveAPIView):
