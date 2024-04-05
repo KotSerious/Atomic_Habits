@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -92,10 +92,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME'),
-        'HOST': '127.0.0.1',
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        'NAME': os.getenv('POSTGRES_DB'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD')
     }
 }
 
@@ -180,15 +181,15 @@ TELEGRAM_URL = 'https://api.telegram.org/bot'
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 # Настройки для Celery
-CELERY_BROKER_URL = 'redis://localhost:6379'    # URL-адрес брокера сообщений
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'    # URL-адрес брокера результатов, также Redis
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')    # URL-адрес брокера сообщений
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')    # URL-адрес брокера результатов, также Redis
 CELERY_TIMEZONE = "UTC"    # Часовой пояс для работы Celery
 CELERY_TASK_TRACK_STARTED = True    # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60    # Максимальное время на выполнение задачи
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'habits.tasks.habit_time',  # Путь к задаче
+        'task': 'habit.tasks.task_send_message',  # Путь к задаче
         'schedule': timedelta(minutes=1),  # Расписание выполнения задачи
     },
 }
