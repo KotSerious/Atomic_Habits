@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME'),
+        'NAME': os.getenv('POSTGRES_DB'),
         'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': os.getenv('POSTGRES_PORT'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD')
     }
 }
 
@@ -189,7 +189,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60    # Максимальное время на �
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'habits.tasks.habit_time',  # Путь к задаче
+        'task': 'habit.tasks.task_send_message',  # Путь к задаче
         'schedule': timedelta(minutes=1),  # Расписание выполнения задачи
     },
 }

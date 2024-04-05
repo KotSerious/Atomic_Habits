@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "good-habits"
+name = "atomic-habits"
 version = "0.1.0"
 description = ""
 authors = ["Alexander Rychagov <sanekzh01@gmail.com>"]
