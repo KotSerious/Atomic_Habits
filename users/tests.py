@@ -14,9 +14,9 @@ class UserTestCase(APITestCase):
         :return:
         """
         self.user = User.objects.create(
-            email='perov97@yandex.ru',
-            tg_name='@perov1328',
-            tg_id=707722353,
+            email='serious@yandex.ru',
+            tg_name='@seriousmistake',
+            tg_id=733615152,
             password='12345678'
         )
 
@@ -50,9 +50,9 @@ class UserTestCase(APITestCase):
             status.HTTP_200_OK
         )
         data = {
-            'email': 'perov97@yandex.ru',
-            'tg_name': '@perov1328',
-            'tg_id': 707722353,
+            'email': 'serious@yandex.ru',
+            'tg_name': '@seriousmistake',
+            'tg_id': 733615152,
             'password': '12345678'
         }
         retrive_data = response.json()
