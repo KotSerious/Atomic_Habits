@@ -151,11 +151,11 @@ REGISTER_VERIFICATION_EMAIL_TEMPLATES = {'body': 'rest_registration/register/bod
 
 # Настройки JWT-токенов
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+# }
 
 # Настройки срока действия токенов
 
