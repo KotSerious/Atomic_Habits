@@ -21,7 +21,7 @@ Telegram API (для отправки уведомлений)
 
 # **_Запуск проекта_**
 
-1. Склонируйте репозиторий: https://github.com/perov1328/good_habits
+1. Склонируйте репозиторий: https://github.com/KotSerious/Atomic_Habits
 
 
 2. Установите необходимые зависимости из файла _**pyproject.toml**_
@@ -31,9 +31,9 @@ Telegram API (для отправки уведомлений)
 
 * SECRET_KEY = Ключ для запуска проекта
 * TELEGRAM_TOKEN = Токен для работы с API Telegram
-* DATABASE_NAME = Наименование базы данных
-* DATABASE_USER = Пользователь базы данных
-* DATABASE_PASSWORD = Пароль от базы данных
+* POSTGRES_DB = Наименование базы данных
+* POSTGRES_USER = Пользователь базы данных
+* POSTGRES_PASSWORD = Пароль от базы данных
 * POSTGRES_HOST= IP базы данных 
 * POSTGRES_PORT= Порт базы данных 
 * CELERY_BROKER_URL=redis://localhost:6379
@@ -57,3 +57,11 @@ Telegram API (для отправки уведомлений)
 # _**Документация API**_
 
 Документация API доступна после запуска сервера по адресу: http://localhost:8000/ или http://localhost:8000/redoc/ 
+
+# **_❗️❗️ РАБОТА В DOCKER ❗️❗️_**
+
+Для запуска работы Docker в фоновом режиме используйте следующие команды:
+
+1. docker-compose build
+2. docker-compose up
+
