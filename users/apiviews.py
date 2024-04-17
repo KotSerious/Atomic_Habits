@@ -32,6 +32,12 @@ class UserUpdateAPIView(UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def perform_update(self, serializer):
+        password = serializer.validated_data.pop('password')
+        self.object = serializer.save()
+        self.object.set_password(password)
+        self.object.save()
+
 
 class UserDeleteAPIView(DestroyAPIView):
     """

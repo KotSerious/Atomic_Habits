@@ -25,12 +25,10 @@ load_dotenv(BASE_DIR / '.env')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
 
 # Application definition
 
@@ -42,16 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'corsheaders',    # CORS
-    'drf_yasg',    # Yet another Swagger generator for Django REST Framework
-    'rest_framework_simplejwt',   # Django rest framework JSON Web Token
-    'rest_framework',    # Django REST Framework
-    'celery',    # Система обработки задач в фоновом режиме
-    'django_celery_beat',    # Инструмент для работы с периодическими задачами
+    'corsheaders',  # CORS
+    'drf_yasg',  # Yet another Swagger generator for Django REST Framework
+    'rest_framework_simplejwt',  # Django rest framework JSON Web Token
+    'rest_framework',  # Django REST Framework
+    'celery',  # Система обработки задач в фоновом режиме
+    'django_celery_beat',  # Инструмент для работы с периодическими задачами
 
-    'users',    # Приложение для работы с пользователями
-    'habit',    # Приложение для работы с моделями привычек
-    'prize',    # Приложение для работы с моделями вознаграждений
+    'users',  # Приложение для работы с пользователями
+    'habit',  # Приложение для работы с моделями привычек
+    'prize',  # Приложение для работы с моделями вознаграждений
 ]
 
 MIDDLEWARE = [
@@ -85,7 +83,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -99,7 +96,6 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD')
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -119,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -130,7 +125,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -151,11 +145,11 @@ REGISTER_VERIFICATION_EMAIL_TEMPLATES = {'body': 'rest_registration/register/bod
 
 # Настройки JWT-токенов
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 # Настройки срока действия токенов
 
@@ -167,12 +161,13 @@ SIMPLE_JWT = {
 # CORS settings
 
 CORS_ALLOWED_ORIGINS = [
-    "https://read-only.example.com",
-    "https://read-and-write.example.com",
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://read-and-write.example.com",
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 # Telegram settings
@@ -181,15 +176,29 @@ TELEGRAM_URL = 'https://api.telegram.org/bot'
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 # Настройки для Celery
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')    # URL-адрес брокера сообщений
-CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')    # URL-адрес брокера результатов, также Redis
-CELERY_TIMEZONE = "UTC"    # Часовой пояс для работы Celery
-CELERY_TASK_TRACK_STARTED = True    # Флаг отслеживания выполнения задач
-CELERY_TASK_TIME_LIMIT = 30 * 60    # Максимальное время на выполнение задачи
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')  # URL-адрес брокера сообщений
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')  # URL-адрес брокера результатов, также Redis
+CELERY_TIMEZONE = "UTC"  # Часовой пояс для работы Celery
+CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
+CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'habit.tasks.task_send_message',  # Путь к задаче
         'schedule': timedelta(minutes=1),  # Расписание выполнения задачи
     },
+}
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        },
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
 }
