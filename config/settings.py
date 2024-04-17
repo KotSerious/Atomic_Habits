@@ -192,9 +192,6 @@ CELERY_BEAT_SCHEDULE = {
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,
     'SECURITY_DEFINITIONS': {
-        'Basic': {
-            'type': 'basic'
-        },
         'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
