@@ -47,7 +47,7 @@ Telegram API (для отправки уведомлений)
 
 6. Запустите Celery для обработки отложенных задач:
 
-* celery -A config worker --pool=solo -l INFO
+* celery -A config worker -l INFO
 * celery -A config beat -l info -S django
 
 7. Подготовьте телеграм бота для отправки данных (можно использовать данные по умолчанию @habit_123_bot)
