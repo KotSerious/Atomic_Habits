@@ -33,12 +33,13 @@ class HabitListAPIView(ListAPIView):
 
 
 class GetPublicHabit(generics.ListAPIView):
+    """
+    Контроллер для просмотра списка всех публичных привычек
+    """
     queryset = Habit.objects.filter(is_public=True)
     serializer_class = PublicHabitSerializer
     pagination_class = HabitPagination
     permission_classes = [IsAuthenticated]
-
-
 
 
 class HabitRetriveAPIView(RetrieveAPIView):

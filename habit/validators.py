@@ -40,8 +40,11 @@ class AssociatedValidator:
     def __call__(self, value):
         associated = value.get(self.associated_habit)
         good_habit = value.get(self.good_habit)
-        if associated and not good_habit:
-            raise ValidationError('В связанные привычки могут попадать только привычки с приятным признаком.')
+        if associated:
+            #print(associated)
+            #print(associated.good_habit)
+            if not associated.good_habit:
+                raise ValidationError('В связанные привычки могут попадать только привычки с приятным признаком.')
 
 
 class GoodHabitValidator:
@@ -57,5 +60,5 @@ class GoodHabitValidator:
         good_habit = value.get(self.good_habit)
         associated = value.get(self.associated_habit)
         prize = value.get(self.prize)
-        if not good_habit and (associated or prize):
+        if good_habit and (associated or prize):
             raise ValidationError('У приятной привычки не может быть вознаграждения или связанной привычки.')

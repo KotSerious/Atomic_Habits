@@ -83,7 +83,7 @@ class UserTestCase(APITestCase):
         """
         update_url = reverse('users:user_update', args=[self.user.pk])
         update_data = {
-            'tg_id': 12345678
+            'password': 'string'
         }
         response = self.client.patch(update_url, update_data, format='json')
         self.user.refresh_from_db()
@@ -91,4 +91,4 @@ class UserTestCase(APITestCase):
             response.status_code,
             status.HTTP_200_OK
         )
-        self.assertEqual(self.user.tg_id, update_data['tg_id'])
+        self.assertEqual(self.user.password, update_data['password'])
