@@ -178,7 +178,7 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 # Настройки для Celery
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')  # URL-адрес брокера сообщений
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')  # URL-адрес брокера результатов, также Redis
-CELERY_TIMEZONE = "UTC"  # Часовой пояс для работы Celery
+CELERY_TIMEZONE = TIME_ZONE  # Часовой пояс для работы Celery
 CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
 

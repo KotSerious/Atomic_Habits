@@ -33,9 +33,13 @@ class UserUpdateAPIView(UpdateAPIView):
     serializer_class = UserSerializer
 
     def perform_update(self, serializer):
-        password = serializer.validated_data.pop('password')
+        password = serializer.validated_data.get('password')
+        if password:
+            password = serializer.validated_data.pop('password')
+            self.object = serializer.save()
+            self.object.set_password(password)
+            self.object.save()
         self.object = serializer.save()
-        self.object.set_password(password)
         self.object.save()
 
 
